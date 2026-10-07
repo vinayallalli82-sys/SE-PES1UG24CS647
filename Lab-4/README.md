@@ -2,7 +2,7 @@
 
 ## Student Details
 
-**Name:** Vinay Allalli  
+**Name:** A Vinay  
 **SRN:** PES1UG24CS647
 
 ## Objective
