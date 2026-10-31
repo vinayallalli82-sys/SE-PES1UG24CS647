@@ -1,55 +1,89 @@
 # Lab 5: Static Code Analysis — Vehicle Service Management System
 
-**Your file:** `vehicle_service.py`
+## Overview
 
-Follow the lab handout for the full instructions.
+This lab applies three Python static analysis tools to `vehicle_service.py` to improve code quality, coding style, and security.
 
-## About the program
+- **Pylint:** Checks code quality, naming conventions, docstrings, and potential programming issues.
+- **Bandit:** Identifies potentially insecure coding patterns.
+- **Flake8:** Checks Python formatting and style conventions.
 
-A service desk for a garage. It books service jobs for vehicles, cancels jobs, totals the cost per vehicle, generates job card ids, finds the busiest vehicle and saves records to services.json.
+## Program Description
 
-The code works, but only just. It has quality, style and security problems of the kind Pylint, Flake8 and Bandit are built to find.
+The Vehicle Service Management System demonstrates how a garage can manage vehicle service records. It supports adding and cancelling services, calculating service costs, generating job card identifiers, identifying the busiest vehicle, and saving and loading records using JSON.
 
-## What to do
+## Work Completed
 
-1. **Run it first** and read the output carefully:
+### 1. Flake8 — Code Formatting
 
-   ```
-   python vehicle_service.py
-   ```
+- Corrected whitespace violations.
+- Fixed blank-line formatting between functions.
+- Wrapped long lines to follow the configured line-length limit.
 
-   It runs a short demonstration and needs no input. Note what it prints, so you can check that it still behaves the same after your fixes.
+### 2. Pylint — Code Quality
 
-2. **Install the tools:**
+- Added module and function docstrings.
+- Renamed functions and variables to follow `snake_case`.
+- Replaced the mutable default argument with `None` and initialized the list inside the function.
+- Replaced broad exception handling with a specific `KeyError` handler.
+- Specified UTF-8 encoding when opening files.
 
-   ```
-   python -m pip install pylint bandit flake8
-   ```
+### 3. Bandit — Security
 
-3. **Run the analysis and save the reports:**
+- Replaced the MD5 hash with SHA-256 for job card identifiers.
+- Read the administrator password from an environment variable instead of hardcoding it.
+- Replaced shell-based file copying with `shutil.copy2()`.
 
-   ```
-   python -m pylint vehicle_service.py > pylint_report.txt
-   python -m bandit -r vehicle_service.py > bandit_report.txt
-   python -m flake8 vehicle_service.py > flake8_report.txt
-   ```
+## Final Analysis Results
 
-4. **Document the issues** in `issues.md` using this table (at least 4 rows, high and medium severity first):
+| Tool | Initial result | Final result |
+|---|---|---|
+| Pylint | 4.66/10 | 10.00/10 |
+| Bandit | 2 high-severity and 2 low-severity findings | No issues identified |
+| Flake8 | 4 formatting violations | No violations reported |
 
-   | Issue | Type | Line(s) | Description | Fix Approach |
-   |-------|------|---------|-------------|--------------|
-   | ...   | ...  | ...     | ...         | ...          |
+## Reports
 
-5. **Fix the code.** Fix at least 4 of the issues you documented, then rerun all three tools to confirm they are gone. Repeat until you are satisfied. The program should still do its job when you are done.
+The repository contains before-and-after analysis reports for all three tools:
 
-6. **Reflect.** Answer the four reflection questions from the handout in `reflection.md`.
+- `pylint_before.txt`
+- `pylint_after.txt`
+- `bandit_before.txt`
+- `bandit_after.txt`
+- `flake8_before.txt`
+- `flake8_after.txt`
 
-## Deliverables
+## Files
 
-- `vehicle_service.py`: your cleaned version, with at least 4 issues fixed.
-- `issues.md`: the completed issue table.
-- `reflection.md`: your answers to the reflection questions.
+- `vehicle_service.py` — Updated Python program.
+- `issues.md` — Issue documentation table and fixes.
+- `reflection.md` — Lab reflection answers.
+- The six report files — Static analysis results before and after the fixes.
 
-**Target:** aim for a Pylint score above 9.5 on your final file. A perfect 10.00/10 is very good.
+## Running the Program
 
-Be ready to explain the bugs you found and how you fixed them. You may be called on to present.
+Run the following command from the project directory:
+
+```bash
+python vehicle_service.py
+```
+
+## Running Static Analysis
+
+Install the tools:
+
+```bash
+python -m pip install pylint bandit flake8
+```
+
+Run the checks:
+
+```bash
+python -m pylint vehicle_service.py
+python -m bandit vehicle_service.py
+python -m flake8 vehicle_service.py
+```
+
+## Conclusion
+
+The lab demonstrated how static analysis can help improve Python code quality, formatting, and security. The final version achieved a Pylint score of 10.00/10, and the final Bandit and Flake8 scans reported no issues.
